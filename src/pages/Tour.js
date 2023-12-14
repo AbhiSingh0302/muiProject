@@ -5,10 +5,13 @@ import cities from "../data.json";
 import { useState, useEffect } from "react";
 import Accordion from "../components/Accordion";
 import BottomNav from "../components/BottomNav";
+import Alert from "../components/Alert";
+import { useSelector } from "react-redux";
 
 const Tour = () => {
     const params = useParams();
     const [city, setCity] = useState({});
+    const show = useSelector(state => state.show);
 
     useEffect(() => {
         cities.forEach(ele => {
@@ -21,6 +24,7 @@ const Tour = () => {
     }, [params])
 
     return <Container sx={{ width: 900, paddingBottom: 10}}>
+    {show && <Alert/>}
         <Typography
             variant="h3"
             component="h1"
